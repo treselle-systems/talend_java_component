@@ -1,0 +1,42 @@
+String jrXmlFileName=((String)globalMap.get("jrxml_file"));
+java.io.File jrXmlFile= new java.io.File(context.jrXmlPath+jrXmlFileName);		
+		String searchCol1 = ((String)globalMap.get("col1"));
+		String replaceCol1 = "Column1";
+		String searchCol2 = ((String)globalMap.get("col2"));
+		String replaceCol2 = "Column2";
+		String searchCol3 = ((String)globalMap.get("col3"));
+		String replaceCol3 = "Column3";
+		String searchCol4 = ((String)globalMap.get("col4"));
+		String replaceCol4 = "Column4";		
+			
+	if(jrXmlFileName != null){
+		try{
+		    java.io.FileReader fr = new java.io.FileReader(jrXmlFile);
+		    String s;
+		    String totalStr = "";
+		    try (java.io.BufferedReader br = new java.io.BufferedReader(fr)) {
+
+		        while ((s = br.readLine()) != null) {
+		            totalStr += s;
+		        }    
+		        if(searchCol1 != null)
+		        	totalStr = totalStr.replaceAll(searchCol1, replaceCol1);
+		        
+		        if(searchCol2 != null)
+		        	totalStr = totalStr.replaceAll(searchCol2, replaceCol2);
+		        
+		        if(searchCol3 != null)
+		        	totalStr = totalStr.replaceAll(searchCol3, replaceCol3);
+		        
+		        if(searchCol4 != null)
+		        	totalStr = totalStr.replaceAll(searchCol4, replaceCol4);
+	     
+		        java.io.FileWriter fw = new java.io.FileWriter(jrXmlFile);
+		   	        
+		    fw.write(totalStr);
+		    fw.close();
+		    }
+		}catch(Exception e){
+		    e.printStackTrace();
+		}
+	}
